@@ -21,12 +21,12 @@ export default function Sidebar({ isOpen, onClose, profile, formatCurrency }) {
   return (
     <>
       <div
-        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform transition-transform duration-300 z-50 ${
+        className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform transition-transform duration-300 z-50 overflow-y-auto ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="p-6">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-6 sticky top-0 bg-white pb-4 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-800">Mi Perfil</h2>
             <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg text-xl">
               ✕
@@ -51,7 +51,9 @@ export default function Sidebar({ isOpen, onClose, profile, formatCurrency }) {
               <div className="space-y-3">
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <span className="text-sm text-gray-600">ID de Usuario</span>
-                  <span className="text-sm font-medium text-gray-800 text-xs">{profile.id}</span>
+                  <span className="text-sm font-medium text-gray-800 text-xs break-all max-w-[150px]">
+                    {profile.id}
+                  </span>
                 </div>
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <span className="text-sm text-gray-600">Rol</span>
@@ -65,7 +67,7 @@ export default function Sidebar({ isOpen, onClose, profile, formatCurrency }) {
                   onClick={goToDashboard}
                   className="w-full py-3 bg-indigo-500 text-white rounded-lg font-medium hover:bg-indigo-600 transition-colors flex items-center justify-center gap-2"
                 >
-                  <span>🍾</span>
+                  <span>💳</span>
                   <span>Transacciones</span>
                 </button>
                 
@@ -84,6 +86,9 @@ export default function Sidebar({ isOpen, onClose, profile, formatCurrency }) {
               >
                 Cerrar Sesión
               </button>
+
+              {/* Espaciado adicional al final para scroll */}
+              <div className="h-4"></div>
             </div>
           )}
         </div>

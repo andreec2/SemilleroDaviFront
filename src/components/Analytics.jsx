@@ -3,14 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import PieChart from './analytics/PieChart';
 import BarChart from './analytics/BarChart';
 import StatCard from './analytics/StatCard';
+import AnalyticsIndicators from './AnalyticsIndicators';
 import useAnalytics from '../hooks/useAnalytics';
 import { formatCurrency } from '../utils/formatters';
 
 export default function Analytics() {
   const [activeTab, setActiveTab] = useState('gastos');
+  const [activeSection, setActiveSection] = useState('charts'); // 'charts' o 'indicators'
   const navigate = useNavigate();
   const API_URL = 'http://localhost:8080/api';
   const { pieData, gastosData, ingresosData, loading } = useAnalytics(API_URL);
+
+  if (activeSection === 'indicators') {
+    return <AnalyticsIndicators onBack={() => setActiveSection('charts')} />;
+  }
 
   if (loading) {
     return (
@@ -34,19 +40,27 @@ export default function Analytics() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header con botón de regreso */}
         <div className="mb-8 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2">📊 Análisis Financiero</h1>
             <p className="text-gray-600">Visualiza tus patrones de gastos e ingresos</p>
           </div>
-          <button
-            onClick={() => navigate('/dashboard')}
-            className="px-6 py-3 bg-white text-gray-800 rounded-lg font-medium hover:bg-gray-100 transition-colors shadow-md flex items-center gap-2"
-          >
-            <span>←</span>
-            <span>Volver al Dashboard</span>
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={() => setActiveSection('indicators')}
+              className="px-6 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors shadow-md flex items-center gap-2"
+            >
+              <span>📈</span>
+              <span>Ver Indicadores</span>
+            </button>
+            <button
+              onClick={() => navigate('/dashboard')}
+              className="px-6 py-3 bg-white text-gray-800 rounded-lg font-medium hover:bg-gray-100 transition-colors shadow-md flex items-center gap-2"
+            >
+              <span>←</span>
+              <span>Dashboard</span>
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
