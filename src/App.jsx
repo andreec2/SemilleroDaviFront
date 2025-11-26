@@ -4,6 +4,7 @@ import Signup from "./components/login/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./components/Dashboard";
 import Analytics from "./components/Analytics";
+import AnalyticsIndicators from "./components/AnalyticsIndicators";
 
 function App() {
   return (
@@ -27,6 +28,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Analytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/analytics/indicadores"
+          element={
+            <ProtectedRoute>
+              <AnalyticsIndicators />
             </ProtectedRoute>
           }
         />

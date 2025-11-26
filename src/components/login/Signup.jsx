@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import loginImage from "../../assets/login.png";
+import loginImage from "../../assets/Que-son-las-finanzas-2.png";
 
 const Signup = () => {
   const [formData, setFormData] = useState({

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import loginImage from "../../assets/login.png";
+import loginImage from "../../assets/Que-son-las-finanzas-2.png";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ username: "", password: "" });

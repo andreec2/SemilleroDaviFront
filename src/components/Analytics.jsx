@@ -3,20 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import PieChart from './analytics/PieChart';
 import BarChart from './analytics/BarChart';
 import StatCard from './analytics/StatCard';
-import AnalyticsIndicators from './AnalyticsIndicators';
 import useAnalytics from '../hooks/useAnalytics';
 import { formatCurrency } from '../utils/formatters';
 
 export default function Analytics() {
   const [activeTab, setActiveTab] = useState('gastos');
-  const [activeSection, setActiveSection] = useState('charts'); // 'charts' o 'indicators'
   const navigate = useNavigate();
   const API_URL = 'http://localhost:8080/api';
   const { pieData, gastosData, ingresosData, loading } = useAnalytics(API_URL);
-
-  if (activeSection === 'indicators') {
-    return <AnalyticsIndicators onBack={() => setActiveSection('charts')} />;
-  }
 
   if (loading) {
     return (
@@ -47,7 +41,7 @@ export default function Analytics() {
           </div>
           <div className="flex gap-3">
             <button
-              onClick={() => setActiveSection('indicators')}
+              onClick={() => navigate('/analytics/indicadores')}
               className="px-6 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors shadow-md flex items-center gap-2"
             >
               <span>📈</span>
