@@ -47,6 +47,7 @@ const Signup = () => {
         setError(data.message || "Error al crear la cuenta.");
       }
     } catch (err) {
+      navigate("/");
       setError("Error de red o del servidor.");
     } finally {
       setLoading(false);
